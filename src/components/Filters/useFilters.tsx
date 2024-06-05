@@ -7,8 +7,8 @@ export const useFilters = () => {
   const methods = useForm<FiltersType>({
     resolver: zodResolver(filtersSchema),
     defaultValues: {
-      name: '',
-      email: ''
+      name: undefined,
+      email: undefined
     }
   });
 

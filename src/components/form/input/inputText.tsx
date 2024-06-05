@@ -5,7 +5,6 @@ export type InputTextType = {
   name: string;
   type?: 'text' | 'email';
   placeholder?: string;
-  required?: boolean;
   firstIcon?: IconType;
   lastIcon?: IconType;
 };
@@ -14,7 +13,6 @@ export const InputText = ({
   name,
   type = 'text',
   placeholder,
-  required = false,
   ...props
 }: InputTextType) => {
   const { register } = useFormContext();
@@ -30,9 +28,7 @@ export const InputText = ({
         className="flex border-0 outline-0 w-full bg-transparent disabled:cursor-not-allowed disabled:text-font-color-disabled"
         type={type}
         placeholder={placeholder}
-        {...register(name, {
-          required
-        })}
+        {...register(name)}
       />
       {props.lastIcon && (
         <div className="flex text-gray-600">

@@ -17,10 +17,12 @@ export const useCustomers = () => {
     options: (
       <div className="flex flex-row justify-center gap-6">
         <FaPencilAlt
-          className="cursor-pointer text-green-600"
+          title="Editar"
+          className="cursor-pointer text-lime-600"
           onClick={() => router.push(`/customer/${customer.id}`)}
         />
         <FaTrashAlt
+          title="Deletar"
           className="cursor-pointer text-red-600"
           onClick={() => removeCustomer(customer.id)}
         />
@@ -39,7 +41,7 @@ export const useCustomers = () => {
 
   const loadCustomers = async (filters = {}) => {
     try {
-      const response = await find(filters);
+      const response = await find([...Object.entries(filters)]);
 
       const customerList = response.map(createCustomer);
 

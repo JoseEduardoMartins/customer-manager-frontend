@@ -1,17 +1,15 @@
 import { useRouter } from 'next/navigation';
 import { Button, Form, FormField } from '../form';
-import { FiltersType as FilterSubmitType } from './types';
+import { FiltersType } from './types';
 import { useFilters } from './useFilters';
 
-export type FiltersType = {
-  handleSubmit: (data: FilterSubmitType) => void;
+export type FiltersDataType = {
+  handleSubmit: (data: FiltersType) => void;
 };
 
-export const Filters = ({ handleSubmit }: FiltersType) => {
+export const Filters = ({ handleSubmit }: FiltersDataType) => {
   const router = useRouter();
   const { methods } = useFilters();
-
-  console.log(methods.formState.errors);
 
   return (
     <div className='w-full bg-white p-4 shadow-md rounded-lg text-black"'>
@@ -32,7 +30,13 @@ export const Filters = ({ handleSubmit }: FiltersType) => {
           placeholder="Digite um e-mail ..."
           required={false}
         />
-        <Button type="button" onClick={() => methods.reset()}>
+        <Button
+          type="button"
+          onClick={() => {
+            methods.reset();
+            handleSubmit({});
+          }}
+        >
           Limpar
         </Button>
         <Button>Buscar</Button>

@@ -1,9 +1,7 @@
 import http from '@/config/http';
 import { TagFindResponse } from './tag.service';
-export type CustomerFindFilters = {
-  name?: string;
-  email?: string;
-};
+
+export type CustomerFindFilters = [string, unknown];
 
 export type CustomerFindResponse = {
   id: number;
@@ -13,22 +11,22 @@ export type CustomerFindResponse = {
 };
 
 export const find = async (
-  filters: CustomerFindFilters = {}
+  filters: CustomerFindFilters[]
 ): Promise<CustomerFindResponse[]> => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const filterList = Object.entries(filters);
-
     let url = '/customers/';
 
-    filterList?.forEach((filter) => {
-      const [key, value] = filter;
+    if (filters.length > 0) {
+      const cleanFilters = filters.filter(
+        (filter) => typeof filter[1] === 'string' && filter[1].length
+      );
 
-      if (!key.length || !value.length) return;
-
-      if (url[url.length - 1] === '/') url += `?${key}=${value}`;
-      else url += `&${key}=${value}`;
-    });
+      const concatFilters = cleanFilters.map(
+        (filter) => `${filter[0]}=${filter[1]}`
+      );
+      url = url.concat(`?${concatFilters.join('&')}`);
+    }
 
     const { data } = await http.get(url);
 
@@ -68,6 +66,8 @@ export const save = async (
 
     return data;
   } catch (error) {
+    console.log(error);
+
     throw error;
   }
 };
