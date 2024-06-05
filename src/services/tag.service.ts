@@ -2,13 +2,11 @@ import http from '@/config/http';
 
 export type TagFindFilters = {
   title?: string;
-  email?: string;
 };
 
 export type TagFindResponse = {
   id: number;
   title: string;
-  email: string;
 };
 
 export const find = async (

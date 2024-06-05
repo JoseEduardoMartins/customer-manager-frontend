@@ -18,8 +18,6 @@ export const useCustomer = () => {
   });
 
   const handleSubmit = async (data: CustomerType) => {
-    console.log(data);
-
     await save(data);
     router.push('/');
   };

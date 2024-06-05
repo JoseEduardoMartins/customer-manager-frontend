@@ -1,5 +1,5 @@
 import http from '@/config/http';
-
+import { TagFindResponse } from './tag.service';
 export type CustomerFindFilters = {
   name?: string;
   email?: string;
@@ -9,6 +9,7 @@ export type CustomerFindResponse = {
   id: number;
   name: string;
   email: string;
+  tags: TagFindResponse[];
 };
 
 export const find = async (
@@ -20,9 +21,13 @@ export const find = async (
 
     let url = '/customers/';
 
-    filterList?.forEach((filter, index) => {
+    filterList?.forEach((filter) => {
       const [key, value] = filter;
-      url += !index ? `?${key}=${value}` : `&${key}=${value}`;
+
+      if (!key.length || !value.length) return;
+
+      if (url[url.length - 1] === '/') url += `?${key}=${value}`;
+      else url += `&${key}=${value}`;
     });
 
     const { data } = await http.get(url);

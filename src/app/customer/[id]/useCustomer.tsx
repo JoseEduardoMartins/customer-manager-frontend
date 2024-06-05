@@ -30,8 +30,9 @@ export const useCustomer = ({
 
   const loadCustomer = async () => {
     try {
-      const { name, email } = await findById(id);
-      methods.reset({ name, email });
+      const { name, email, tags } = await findById(id);
+
+      methods.reset({ name, email, tags });
     } catch (error) {
       alert('error');
     }
@@ -44,6 +45,7 @@ export const useCustomer = ({
 
   useLayoutEffect(() => {
     loadCustomer();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 

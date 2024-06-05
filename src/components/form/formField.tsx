@@ -1,15 +1,12 @@
-import { useState } from 'react';
-import { IconType } from 'react-icons';
-import { FormFieldError } from './formFieldError';
-import { InputTag, InputText } from './input';
-import { Label } from './label';
-import { CustomerTagType } from '@/app/customer/types';
-import { find, save } from '@/services/tag.service';
-import { Button } from './button';
 import { useFieldArray, useFormContext } from 'react-hook-form';
+import { IconType } from 'react-icons';
+import { FaTrashAlt } from 'react-icons/fa';
+import { FormFieldError } from './formFieldError';
+import { InputText } from './input';
+import { Label } from './label';
 
 export type FormFieldType = {
-  label: string;
+  label?: string;
   name: string;
   type: 'text' | 'email' | 'tag';
   placeholder?: string;
@@ -27,44 +24,23 @@ export const FormField = ({
   inputFirstIcon,
   inputLastIcon
 }: FormFieldType) => {
-  const { register, control } = useFormContext();
-  const { fields, append } = useFieldArray({ control, name });
-
-  console.log(fields);
-
-  const [searchTitle, setSearchTitle] = useState<string>('');
-  const [searchIsVisible, setSearchIsVisible] = useState<boolean>(false);
-  const [searchResult, setSearchResult] = useState<CustomerTagType[]>([]);
-
-  const handleSearch = async () => {
-    if (!searchTitle) return;
-
-    const response = await find({
-      title: searchTitle
-    });
-
-    setSearchResult(response);
-    setSearchIsVisible(true);
-  };
-
-  const handleSaveTag = async () => {
-    const { id } = await save({
-      title: searchTitle
-    });
-
-    append({
-      id,
-      title: searchTitle
-    });
-
-    setSearchTitle('');
-    setSearchIsVisible(false);
-  };
+  const { control, register } = useFormContext();
+  const { fields, append, remove } = useFieldArray({ control, name });
 
   return (
-    <div className="w-full relative">
+    <div className="w-full">
       <div className="w-full flex flex-col">
-        <Label value={label} required={required} />
+        <div className="flex flex-row justify-between">
+          {label && <Label value={label} required={required} />}
+          {type === 'tag' && (
+            <p
+              className="cursor-pointer text-lime-600"
+              onClick={() => append({ title: '' })}
+            >
+              Adicionar
+            </p>
+          )}
+        </div>
         {type === 'email' && (
           <InputText
             name={name}
@@ -84,56 +60,32 @@ export const FormField = ({
             lastIcon={inputLastIcon}
           />
         )}
-        {type === 'tag' && (
-          <InputTag
-            name={name}
-            searchTitle={searchTitle}
-            setSearchTitle={setSearchTitle}
-            searchIsVisible={searchIsVisible}
-            setSearchIsVisible={setSearchIsVisible}
-            handleSearch={handleSearch}
-          />
-        )}
-      </div>
-      {type === 'tag' && searchIsVisible && (
-        <div className="z-index z-10 border-gray-300 border rounded-lg mt-1 p-4 bg-white max-h-48 overflow-auto w-full absolute">
-          {!searchResult.length && (
-            <div className="mb-2">
-              <div className="flex flex-row items-center justify-between">
-                <h2>Nenhuma tag foi encontrada</h2>
-                <Button type="button" onClick={() => handleSaveTag()}>
-                  Adicionar
-                </Button>
-              </div>
-            </div>
-          )}
-          {searchResult?.map((item) => (
-            <div className="mb-2" key={item.id} onClick={() => append(item)}>
-              <div className="flex flex-col">
-                <div className="flex flex-row items-center">
-                  <div className="flex items-center justify-center h-10 w-10">
-                    <label className="flex items-center justify-center h-[1.125rem] w-[1.125rem] border-2 rounded cursor-pointer bg-white border-gray-600 group-hover:bg-primary-100">
-                      <input
-                        className="appearance-none rounded h-[1.125rem] w-0 peer border-none"
-                        type="checkbox"
-                        {...register(name, {
-                          required,
-                          value: item
-                        })}
-                      />
-                    </label>
-                  </div>
-                  <label className="text-gray-800">
-                    <div className="flex flex-col cursor-pointer text-body2">
-                      <span>{item.title}</span>
-                    </div>
-                  </label>
+        {type === 'tag' &&
+          fields?.map((field, index) => (
+            <div
+              className="w-full flex flex-row items-center justify-between gap-4"
+              key={field.id}
+            >
+              <div className="w-full flex flex-col">
+                <div className="flex border justify-between items-center rounded-lg text-font-color-primary placeholder:text-font-color-disabled text-body1 focus-within:outline-none focus-within:ring-inset focus-within:ring-1 space-x-3 mt-1 p-4 max-h-14 border-gray-500/[.32] hover:border-gray-800 focus-within:border-primary focus-within:ring-primary text-gray-800">
+                  <input
+                    className="flex border-0 outline-0 w-full bg-transparent disabled:cursor-not-allowed disabled:text-font-color-disabled"
+                    type={type}
+                    placeholder={placeholder}
+                    {...register(`${name}[${index}].title`, {
+                      required
+                    })}
+                  />
                 </div>
+                <FormFieldError name={`${name}[${index}].title`} />
               </div>
+              <FaTrashAlt
+                className="w-10 cursor-pointer text-red-500 size-5 basis-1/4"
+                onClick={() => remove(index)}
+              />
             </div>
           ))}
-        </div>
-      )}
+      </div>
       <div>
         <FormFieldError name={name} />
       </div>
