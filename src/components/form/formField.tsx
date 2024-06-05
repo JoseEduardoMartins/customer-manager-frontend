@@ -1,6 +1,6 @@
 import { IconType } from 'react-icons';
 import { FormFieldError } from './formFieldError';
-import { InputText } from './input';
+import { InputText } from './inputText';
 import { Label } from './label';
 
 export type FormFieldType = {

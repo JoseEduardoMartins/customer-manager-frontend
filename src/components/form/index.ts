@@ -1,8 +1,17 @@
 import { Button } from './button';
 import { Form } from './form';
 import { FormField } from './formField';
-import { FormFieldTag } from './formFieldTag';
 import { FormFieldError } from './formFieldError';
+import { FormFieldTag } from './formFieldTag';
+import { InputText } from './inputText';
 import { Label } from './label';
 
-export { Button, Form, FormField, FormFieldTag, FormFieldError, Label };
+export {
+  Button,
+  Form,
+  FormField,
+  FormFieldError,
+  FormFieldTag,
+  InputText,
+  Label
+};

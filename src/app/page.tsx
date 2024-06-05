@@ -2,7 +2,7 @@
 
 import { Table } from '@/components/table/';
 import { useCustomers } from './useCustomers';
-import { Filters } from '@/components/Filters';
+import { Filters } from '@/components/filters';
 
 export default function Customers() {
   const { customers, loadCustomers } = useCustomers();

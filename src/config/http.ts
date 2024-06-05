@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { api } from './environment';
 
 const http = axios.create({
-  baseURL: 'http://localhost:3000/customer-manager'
+  baseURL: api.url
 });
 
 export default http;
