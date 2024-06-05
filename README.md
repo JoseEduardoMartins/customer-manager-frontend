@@ -30,7 +30,7 @@ cd contacts-frontend
 4. Inicie a aplicação em modo de desenvolvimento:
 
 ```bash
-npm start
+npm run dev
 ```
 
 Acesse http://localhost:3000 em seu navegador.
