@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Contact Management System - Front-end
 
-## Getting Started
+Este projeto é uma aplicação front-end desenvolvida em Next para realizar operações básicas de listagem, cadastro e edição de clientes, os quais podem ter múltiplas tags associados.
 
-First, run the development server:
+## Pré-requisitos
+
+Certifique-se de ter as seguintes dependências instaladas antes de iniciar:
+
+-   [Node.js](https://nodejs.org/) (versão 16.17.0 ou superior)
+-   Pacotes [npm](https://www.npmjs.com/) (Node Package Manager)
+
+## Instruções de Configuração
+
+1. Clone o repositório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/JoseEduardoMartins/customer-manager-frontend.git
+
+cd contacts-frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+ npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Configure as variáveis de ambiente. Renomeie o arquivo `.env.example` para `.env` e preencha as informações necessárias.
 
-## Learn More
+4. Inicie a aplicação em modo de desenvolvimento:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Acesse http://localhost:3000 em seu navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Para criar uma versão otimizada para produção:
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Os arquivos resultantes estarão na pasta build/.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Funcionalidades
+
+1. Listagem de clientes
+2. Cadastro de novos clientes
+3. Edição de clientes existentes
+
+## Contribuição
+
+Contribuições são bem-vindas! Se encontrar algum problema ou tiver sugestões, por favor, abra uma [issue](https://github.com/JoseEduardoMartins/customer-manager-frontend/issues/new).
+
+## Autor
+
+-   José Eduardo Martins
+
+## Licença
+
+Este projeto é licenciado sob a Licença MIT - consulte o arquivo LICENSE.md para obter detalhes.
+
+## Contato
+
+Para qualquer dúvida ou problema, entre em contato com `m4rt1ns.jose@gmail.com`.
