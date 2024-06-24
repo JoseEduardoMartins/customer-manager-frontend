@@ -8,9 +8,9 @@ export default function Customers() {
   const { customers, loadCustomers } = useCustomers();
 
   return (
-    <main className="w-full min-h-screen bg-zinc-200 py-4 px-4">
+    <main className="w-full min-h-screen bg-neutral-800 py-4 px-4">
       <div className="w-full m-auto flex flex-col items-center gap-y-6 mt-2">
-        <a className="text-black text-2xl font-bold" href="/">
+        <a className="text-white text-2xl font-bold" href="/">
           Customer manager
         </a>
         <Filters handleSubmit={loadCustomers} />

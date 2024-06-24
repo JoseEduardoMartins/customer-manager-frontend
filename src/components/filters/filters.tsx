@@ -12,7 +12,7 @@ export const Filters = ({ handleSubmit }: FiltersDataType) => {
   const { methods } = useFilters();
 
   return (
-    <div className='w-full bg-white p-4 shadow-md rounded-lg text-black"'>
+    <div className="w-full p-4 shadow-md rounded-lg">
       <Form
         methods={methods}
         handleSubmit={handleSubmit}

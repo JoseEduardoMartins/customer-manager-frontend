@@ -6,9 +6,9 @@ export type TableType = {
 export const Table = ({ columns, rows }: TableType) => {
   return (
     <>
-      <table className="w-full bg-white pt-8 pb-10 px-6 md:px-10 shadow-md rounded-lg text-black">
+      <table className="w-full pt-8 pb-10 px-6 md:px-10 shadow-md rounded-lg">
         <thead>
-          <tr className="border-b">
+          <tr className="border-b border-neutral-600">
             {columns?.map((column, index) => (
               <th className="p-2 text-center" key={index}>
                 {column}
@@ -34,7 +34,7 @@ export const Table = ({ columns, rows }: TableType) => {
           </tbody>
         )}
       </table>
-      <div className="w-full flex justify-center items-center p-4 text-black">
+      <div className="w-full flex justify-center items-center p-4 text-white">
         {!rows.length && <h2>Nenhum cliente foi encontrado</h2>}
       </div>
     </>

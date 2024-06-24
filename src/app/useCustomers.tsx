@@ -18,7 +18,7 @@ export const useCustomers = () => {
       <div className="flex flex-row justify-center gap-6">
         <FaPencilAlt
           title="Editar"
-          className="cursor-pointer text-lime-600"
+          className="cursor-pointer text-emerald-500 hover:text-emerald-400"
           onClick={() => router.push(`/customer/${customer.id}`)}
         />
         <FaTrashAlt

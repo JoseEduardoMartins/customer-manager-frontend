@@ -27,8 +27,8 @@ export const Button = ({ children, type = 'submit', onClick }: ButtonType) => {
         border-transparent
         disabled:bg-state-disabled-background/[0.24]
         hover:disabled:bg-state-disabled-background/[0.24]
-        bg-lime-600
-        hover:bg-lime-500
+        bg-emerald-500
+        hover:bg-emerald-400
         text-white
         shadow-md-primary
         hover:text-white
