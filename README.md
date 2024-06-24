@@ -6,8 +6,8 @@ Este projeto é uma aplicação front-end desenvolvida em Next para realizar ope
 
 Certifique-se de ter as seguintes dependências instaladas antes de iniciar:
 
--   [Node.js](https://nodejs.org/) (versão 16.17.0 ou superior)
--   Pacotes [npm](https://www.npmjs.com/) (Node Package Manager)
+- [Node.js](https://nodejs.org/) (versão 16.17.0 ou superior)
+- Pacotes [npm](https://www.npmjs.com/) (Node Package Manager)
 
 ## Instruções de Configuração
 
@@ -27,7 +27,13 @@ cd contacts-frontend
 
 3. Configure as variáveis de ambiente. Renomeie o arquivo `.env.example` para `.env` e preencha as informações necessárias.
 
-4. Inicie a aplicação em modo de desenvolvimento:
+4. Utilize a versão recomendada no projeto:
+
+```bash
+nvm use
+```
+
+5. Inicie a aplicação em modo de desenvolvimento:
 
 ```bash
 npm run dev
@@ -35,7 +41,7 @@ npm run dev
 
 Acesse http://localhost:3000 em seu navegador.
 
-5. Para criar uma versão otimizada para produção:
+6. Para criar uma versão otimizada para produção:
 
 ```bash
 npm run build
@@ -55,7 +61,7 @@ Contribuições são bem-vindas! Se encontrar algum problema ou tiver sugestões
 
 ## Autor
 
--   José Eduardo Martins
+- José Eduardo Martins
 
 ## Licença
 
