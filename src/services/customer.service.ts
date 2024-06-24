@@ -1,7 +1,10 @@
 import http from '@/config/http';
-import { TagFindResponse } from './tag.service';
 
 export type CustomerFindFilters = [string, unknown];
+
+export type TagFindResponse = {
+  title: string;
+};
 
 export type CustomerFindResponse = {
   id: number;
@@ -66,8 +69,6 @@ export const save = async (
 
     return data;
   } catch (error) {
-    console.log(error);
-
     throw error;
   }
 };
