@@ -39,7 +39,15 @@ export const useCustomer = ({
   };
 
   const handleSubmit = async (data: CustomerType) => {
-    await update(id, data);
+    const { defaultValues } = methods.formState;
+
+    const body = {
+      ...(data.name !== defaultValues?.name && { name: data.name }),
+      ...(data.email !== defaultValues?.email && { email: data.email }),
+      ...(data.tags !== defaultValues?.tags && { tags: data.tags })
+    };
+
+    await update(id, body);
     router.push('/');
   };
 
